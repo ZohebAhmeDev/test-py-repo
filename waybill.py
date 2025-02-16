@@ -1,5 +1,4 @@
 import streamlit as st
-from reportlab.graphics.barcode import code128
 import random
 import string
 from datetime import datetime

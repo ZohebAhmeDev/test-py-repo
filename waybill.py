@@ -1,4 +1,8 @@
 import streamlit as st
+from reportlab.lib.pagesizes import A4
+from reportlab.pdfgen import canvas  # Correct import
+from reportlab.lib.units import mm
+from reportlab.graphics.barcode import code128
 import random
 import string
 from datetime import datetime

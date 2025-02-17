@@ -56,16 +56,16 @@ def generate_pdf(waybills_data):
     c.drawString(x, y + height - 45*mm, f"Generated: {current_time}")
     
     # Sender Info
-    c.setFont("Helvetica-Bold", 10)
-    c.drawString(x, y + height - 60*mm, "Sender:")
-    c.setFont("Helvetica", 9)
+    c.setFont("Helvetica-Bold", 12)
+    c.drawString(x, y + height - 60*mm, "Recipient:")
+    c.setFont("Helvetica", 10)
     c.drawString(x, y + height - 65*mm, data['sender']['name'])
     c.drawString(x, y + height - 70*mm, data['sender']['address'])
     c.drawString(x, y + height - 75*mm, data['sender']['phone'])
     
     # Recipient Info
     c.setFont("Helvetica-Bold", 10)
-    c.drawString(x, y + height - 85*mm, "Recipient:")
+    c.drawString(x, y + height - 85*mm, "Sender:")
     c.setFont("Helvetica", 9)
     c.drawString(x, y + height - 90*mm, data['recipient']['name'])
     c.drawString(x, y + height - 95*mm, data['recipient']['address'])
@@ -115,21 +115,23 @@ def draw_waybill(c, x, y, width, height, data):
     c.line(x, y + height - 47*mm, x + width, y + height - 47*mm)
     
     # Sender Info
+    c.setFont("Helvetica-Bold", 12)
+    c.drawString(x, y + height - 54*mm, "Recipient:")
     c.setFont("Helvetica-Bold", 10)
-    c.drawString(x, y + height - 60*mm, "Sender:")
-    c.setFont("Helvetica", 9)
-    c.drawString(x, y + height - 65*mm, data['sender']['name'])
-    c.drawString(x, y + height - 70*mm, data['sender']['address'])
+    c.drawString(x, y + height - 60*mm, data['sender']['name'])
+    c.drawString(x, y + height - 65*mm, data['sender']['address'])
+    c.drawString(x, y + height - 70*mm, data['sender']['phone'])
     
     # Line below sender
-    c.line(x, y + height - 73*mm, x + width, y + height - 73*mm)
+    c.line(x, y + height - 76*mm, x + width, y + height - 76*mm)
     
     # Recipient Info
     c.setFont("Helvetica-Bold", 10)
-    c.drawString(x, y + height - 85*mm, "Recipient:")
+    c.drawString(x, y + height - 85*mm, "Sender:")
     c.setFont("Helvetica", 9)
     c.drawString(x, y + height - 90*mm, data['recipient']['name'])
     c.drawString(x, y + height - 95*mm, data['recipient']['address'])
+    c.drawString(x, y + height - 100*mm, data['recipient']['phone'])
     
     # Line below recipient
     c.line(x, y + height - 104*mm, x + width, y + height - 104*mm)
@@ -158,16 +160,16 @@ def main():
         col1, col2 = st.columns(2)
         
         with col1:
-            st.header("Sender Details")
-            sender_name = st.text_input("Sender Name")
-            sender_address = st.text_area("Sender Address")
-            sender_phone = st.text_input("Sender Phone")
+            st.header("Recipient Details")
+            sender_name = st.text_input("Recipient Name")
+            sender_address = st.text_area("Recipient Address")
+            sender_phone = st.text_input("Recipient Phone")
             
         with col2:
-            st.header("Recipient Details")
-            recipient_name = st.text_input("Recipient Name")
-            recipient_address = st.text_area("Recipient Address")
-            recipient_phone = st.text_input("Recipient Phone")
+            st.header("Sender Details")
+            recipient_name = st.text_input("Sender Name")
+            recipient_address = st.text_area("Sender Address")
+            recipient_phone = st.text_input("Sender Phone")
             
         st.header("Package Details")
         weight = st.number_input("Weight (kg)", min_value=0.1)
